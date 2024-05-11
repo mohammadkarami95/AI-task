@@ -1,9 +1,11 @@
 FROM python:3
 
-ADD script.py /script.py
+# ADD script.py /script.py
+COPY . .
 ADD requirements.txt /requirements.txt
+RUN pip3 install --no-cache-dir -r /requirements.txt
+RUN pip3 install huggingface_hub
 
-RUN pip3 install -r /requirements.txt
 RUN huggingface-cli download MohammadKarami/bert-human-detector
 RUN huggingface-cli download MohammadKarami/roberta-human-detector
 RUN huggingface-cli download MohammadKarami/electra-human-detector
