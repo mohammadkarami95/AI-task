@@ -11,7 +11,6 @@ RUN huggingface-cli download MohammadKarami/roberta-human-detector
 RUN huggingface-cli download MohammadKarami/electra-human-detector
 
 VOLUME /dataset.jsonl
-VOLUME /out
 
 ENTRYPOINT [ "python3", "/script.py", "--input", "$inputDataset", "--output", "$outputDir" ]
 
