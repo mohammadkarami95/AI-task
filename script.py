@@ -4,11 +4,14 @@ import json
 import glob
 import re
 import pandas as pd
+import torch
 from transformers import pipeline #, AutoModelForSequenceClassification, AutoTokenizer
 
-roberta_classifier= pipeline('text-classification', model='MohammadKarami/roberta-human-detector', tokenizer="MohammadKarami/roberta-human-detector", max_length=512, truncation=True)
-electra_classifier= pipeline('text-classification', model='MohammadKarami/electra-human-detector', tokenizer="MohammadKarami/electra-human-detector", max_length=512, truncation=True)
-bert_classifier= pipeline('text-classification', model='MohammadKarami/bert-human-detector', tokenizer="MohammadKarami/bert-human-detector", max_length=512, truncation=True)
+cuda_device = 0 if torch.cuda.is_available() and torch.cuda.device_count() > 0 else -1
+
+roberta_classifier= pipeline('text-classification', model='MohammadKarami/roberta-human-detector', tokenizer="MohammadKarami/roberta-human-detector", max_length=512, truncation=True, device=cuda_device)
+electra_classifier= pipeline('text-classification', model='MohammadKarami/electra-human-detector', tokenizer="MohammadKarami/electra-human-detector", max_length=512, truncation=True, device=cuda_device)
+bert_classifier= pipeline('text-classification', model='MohammadKarami/bert-human-detector', tokenizer="MohammadKarami/bert-human-detector", max_length=512, truncation=True, device=cuda_device)
 
 import pandas as pd
 import json
