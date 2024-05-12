@@ -26,7 +26,7 @@ def pars_args():
 def main():
     args= pars_args()
     is_human= 0
-    df= pd.read_json(args.input+"/dataset.json", lines= True)
+    df= pd.read_json(args.input, lines= True)
     df['text1']= df['text1'].apply(lambda x: re.sub('[\n]+', ' ', x))
     df['text2']= df['text2'].apply(lambda x: re.sub('[\n]+', ' ', x))
 
